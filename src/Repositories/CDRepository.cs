@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
+using Newtonsoft.Json;
 
 namespace Archive.CDManagement.Frontend.Repositories
 {
     public class CDRepository : ICDRepository
     {
-        private readonly string _cdApiUrl;
-        private readonly HttpClient httpClient;
+        private readonly HttpClient _httpClient;
 
         public CDRepository(HttpClient httpClient, MySettings settings)
         {
-            _cdApiUrl = settings.CDApiUrl;
-            this.httpClient = httpClient;
+            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(settings.CDApiUrl);
         }
 
         public void Create(CDModel cd)
@@ -37,7 +38,9 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public CDModel Read(int id)
         {
-            throw new NotImplementedException();
+           var response = _httpClient.GetAsync("api/cds/3").GetAwaiter().GetResult();
+           var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+           return JsonConvert.DeserializeObject<CDModel>(content);
         }
     }
 }

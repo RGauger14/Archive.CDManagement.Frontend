@@ -29,9 +29,8 @@ namespace Archive.CDManagement.Frontend
             var settings = new MySettings();
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
-            services.AddHttpClient();
+            services.AddHttpClient<ICDRepository, CDRepository>();
             services.AddSingleton<MySettings>(settings);
-            services.AddTransient<ICDRepository, CDRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

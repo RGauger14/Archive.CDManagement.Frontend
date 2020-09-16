@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Archive.CDManagement.Frontend.Models
 {
@@ -24,5 +25,10 @@ namespace Archive.CDManagement.Frontend.Models
         public string Description { get; set; }
 
         public bool OnLoan { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
