@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Configuration;
+using Archive.CDManagement.Frontend.Repositories;
+using Archive.CDManagement.Frontend.Repositories.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,9 @@ namespace Archive.CDManagement.Frontend
             var settings = new MySettings();
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
+            services.AddHttpClient();
+            services.AddSingleton<MySettings>(settings);
+            services.AddTransient<ICDRepository, CDRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
