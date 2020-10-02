@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
@@ -38,9 +34,9 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public CDModel Read(int id)
         {
-           var response = _httpClient.GetAsync($"api/cds/{id}").GetAwaiter().GetResult();
-           var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-           return JsonConvert.DeserializeObject<CDModel>(content);
+            var response = _httpClient.GetAsync($"api/cds/{id}").GetAwaiter().GetResult();
+            var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            return JsonConvert.DeserializeObject<CDModel>(content);
         }
     }
 }

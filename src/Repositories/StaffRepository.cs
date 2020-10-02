@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Models;
 using Newtonsoft.Json;
@@ -33,12 +30,12 @@ namespace Archive.CDManagement.Frontend.Repositories
         {
             throw new NotImplementedException();
         }
+
         public StaffModel Read(int id)
         {
             var response = _httpClient.GetAsync($"api/staff/{id}").GetAwaiter().GetResult();
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return JsonConvert.DeserializeObject<StaffModel>(content);
-
         }
     }
 }

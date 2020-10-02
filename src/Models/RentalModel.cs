@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Archive.CDManagement.Frontend.Models
@@ -12,7 +10,6 @@ namespace Archive.CDManagement.Frontend.Models
 
         public List<RentalItemModel> RentalItems { get; set; }
 
-
         public int StaffId { get; set; }
 
         public StaffModel Staff { get; set; }
@@ -20,10 +17,10 @@ namespace Archive.CDManagement.Frontend.Models
         public DateTime DateRented { get; set; }
 
         public DateTime DateReturned { get; set; }
+
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
-
         }
     }
 }

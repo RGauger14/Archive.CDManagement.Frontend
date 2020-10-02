@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Repositories;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,12 +26,9 @@ namespace Archive.CDManagement.Frontend
             services.AddRazorPages();
             services.AddHttpClient<ICDRepository, CDRepository>();
             //services.AddHttpClient<I>
-
-
             services.AddSingleton<MySettings>(settings);
-        }
+        }        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
