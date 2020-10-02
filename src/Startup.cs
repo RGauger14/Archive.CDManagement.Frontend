@@ -30,6 +30,9 @@ namespace Archive.CDManagement.Frontend
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
             services.AddHttpClient<ICDRepository, CDRepository>();
+            //services.AddHttpClient<I>
+
+
             services.AddSingleton<MySettings>(settings);
         }
 
