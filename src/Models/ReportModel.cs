@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Archive.CDManagement.Frontend.Models
+﻿namespace Archive.CDManagement.Frontend.Models
 {
     public class ReportModel
     {

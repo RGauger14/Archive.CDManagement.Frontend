@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Archive.CDManagement.Frontend.Pages.CDPages
@@ -21,7 +16,7 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
 
         public void OnGet()
         {
-           CD = _cdRepository.Read(0);
+            CD = _cdRepository.Read(0);
         }
     }
 }
