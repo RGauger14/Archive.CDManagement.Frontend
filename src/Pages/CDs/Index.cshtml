@@ -5,6 +5,46 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">CDs</h1>
-    <p>@Model.GetCdsAsJson()</p>
 </div>
+<form method="post">
+    <a asp-page="Create">Create New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Autho</th>
+                <th>Section</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>Barcode</th>
+                <th>Description</th>
+                <th>OnLoan</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Cd in Model.CDs)
+            {
+            <tr>
+                <td>@Cd.Id</td>
+                <td>@Cd.Title</td>
+                <td>@Cd.Author</td>
+                <td>@Cd.Section</td>
+                <td>@Cd.X</td>
+                <td>@Cd.Y</td>
+                <td>@Cd.Barcode</td>
+                <td>@Cd.Description</td>
+                <td>@Cd.OnLoan</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@Cd.Id">Edit</a> |
+                    <button type="submit" asp-page-handler="delete"
+                            asp-route-id="@Cd.Id">
+                        delete
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>

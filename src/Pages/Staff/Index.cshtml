@@ -5,6 +5,42 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Staff</h1>
-    <p>@Model.GetStaffAsJson()</p>
 </div>
+<form method="post">
+    <a asp-page="Create">Create New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Active</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Staff in Model.Staff)
+            {
+                <tr>
+                    <td>@Staff.Id</td>
+                    <td>@Staff.FirstName</td>
+                    <td>@Staff.LastName</td>
+                    <td>@Staff.Address</td>
+                    <td>@Staff.Email</td>
+                    <td>@Staff.MobileNumber</td>
+                    <td>@Staff.Active</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@Staff.Id">Edit</a> |
+                        <button type="submit" asp-page-handler="delete"
+                                asp-route-id="@Staff.Id">
+                            delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

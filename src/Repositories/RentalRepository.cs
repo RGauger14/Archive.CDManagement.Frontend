@@ -34,14 +34,14 @@ namespace Archive.CDManagement.Frontend.Repositories
         }
         public RentalModel Read(int id)
         {
-            var response = _httpClient.GetAsync($"api/rental/{id}").GetAwaiter().GetResult();
+            var response = _httpClient.GetAsync($"api/rentals/{id}").GetAwaiter().GetResult();
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return JsonConvert.DeserializeObject<RentalModel>(content);
         }
 
         public List<RentalModel> GetAll()
         {
-            var response = _httpClient.GetAsync($"api/rental").GetAwaiter().GetResult();
+            var response = _httpClient.GetAsync($"api/rentals").GetAwaiter().GetResult();
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return JsonConvert.DeserializeObject<List<RentalModel>>(content);
         }

@@ -5,6 +5,40 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Rentals</h1>
-    <p>@Model.GetRentalsAsJson()</p>
 </div>
+<form method="post">
+    <a asp-page="Create">Create New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>RentalItems</th>
+                <th>StaffId</th>
+                <th>Staff</th>
+                <th>DateRented</th>
+                <th>DateReturned</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Rental in Model.rentals)
+            {
+                <tr>
+                    <td>@Rental.Id</td>
+                    <td>@Rental.RentalItems</td>
+                    <td>@Rental.StaffId</td>
+                    <td>@Rental.Staff</td>
+                    <td>@Rental.DateRented</td>
+                    <td>@Rental.DateReturned</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@Rental.Id">Edit</a> |
+                        <button type="submit" asp-page-handler="delete"
+                                asp-route-id="@Rental.Id">
+                            delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
