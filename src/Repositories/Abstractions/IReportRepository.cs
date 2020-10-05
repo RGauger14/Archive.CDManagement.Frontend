@@ -1,9 +1,10 @@
-﻿using Archive.CDManagement.Frontend.Models;
+﻿using System.Collections.Generic;
+using Archive.CDManagement.Frontend.Models;
 
 namespace Archive.CDManagement.Frontend.Repositories.Abstractions
 {
     public interface IReportRepository
     {
-        ReportModel Read(int id);
+        List<ReportModel> GetAll();
     }
 }

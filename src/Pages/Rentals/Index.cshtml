@@ -1,5 +1,10 @@
 ﻿@page
-@model Archive.CDManagement.Frontend.Pages.Rentals.IndexModel
+@model Archive.CDManagement.Frontend.Pages.Rentals.IndexRentalModel
 @{
     ViewData["Title"] = "Rentals Index Page";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Rentals</h1>
+    <p>@Model.GetRentalsAsJson()</p>
+</div>

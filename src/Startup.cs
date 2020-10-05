@@ -25,7 +25,9 @@ namespace Archive.CDManagement.Frontend
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
             services.AddHttpClient<ICDRepository, CDRepository>();
-            //services.AddHttpClient<I>
+            services.AddHttpClient<IRentalRepository, RentalRepository>();
+            services.AddHttpClient<IStaffRepository, StaffRepository>();
+            services.AddHttpClient<IReportRepository, ReportRepository>();
             services.AddSingleton<MySettings>(settings);
         }        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 

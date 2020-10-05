@@ -1,4 +1,9 @@
 ﻿@page
-@model Archive.CDManagement.Frontend.Pages.Reports.IndexModel
+@model Archive.CDManagement.Frontend.Pages.Reports.IndexReportModel
 @{
+    ViewData["Title"] = "Reports Page";
 }
+<div class="text-center">
+    <h1 class="display-4">Reports</h1>
+    <p>@Model.GetReportsAsJson()</p>
+</div>

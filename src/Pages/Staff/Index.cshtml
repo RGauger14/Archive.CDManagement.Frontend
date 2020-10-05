@@ -1,4 +1,10 @@
 ﻿@page
-@model Archive.CDManagement.Frontend.Pages.Staff.IndexModel
+@model Archive.CDManagement.Frontend.Pages.Staff.IndexStaffModel
 @{
+    ViewData["Title"] = "Staff Page";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Staff</h1>
+    <p>@Model.GetStaffAsJson()</p>
+</div>

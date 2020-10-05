@@ -1,12 +1,15 @@
+using System.Collections.Generic;
+using System.Globalization;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Archive.CDManagement.Frontend.Pages.CDPages
 {
     public class CDIndexModel : PageModel
     {
-        public CDModel CD { get; private set; }
+        public List<CDModel> CDs { get; private set;}
         private readonly ICDRepository _cdRepository;
 
         public CDIndexModel(ICDRepository cdRepository)
@@ -16,7 +19,12 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
 
         public void OnGet()
         {
-            CD = _cdRepository.Read(0);
+            CDs = _cdRepository.GetAll();
+        }
+
+        public string GetCdsAsJson()
+        {
+            return JsonConvert.SerializeObject(CDs);
         }
     }
 }

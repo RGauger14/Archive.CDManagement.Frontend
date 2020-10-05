@@ -1,4 +1,5 @@
-﻿using Archive.CDManagement.Frontend.Models;
+﻿using System.Collections.Generic;
+using Archive.CDManagement.Frontend.Models;
 
 namespace Archive.CDManagement.Frontend.Repositories.Abstractions
 {
@@ -11,5 +12,7 @@ namespace Archive.CDManagement.Frontend.Repositories.Abstractions
         RentalModel Read(int id);
 
         void Edit(RentalModel rental);
+
+        List<RentalModel> GetAll();
     }
 }
