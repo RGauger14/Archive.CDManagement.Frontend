@@ -1,10 +1,10 @@
-﻿@page
+﻿@page 
 @model Archive.CDManagement.Frontend.Pages.Rentals.IndexRentalModel
 @{
     ViewData["Title"] = "Rentals Index Page";
 }
 
-<div class="text-center">
+<div>
 </div>
 <form method="post">
     <a asp-page="Create">Create New</a>
@@ -14,7 +14,7 @@
                 <th>ID</th>
                 <th>RentalItems</th>
                 <th>StaffId</th>
-                <th>Staff</th>
+                <th>Staff Member</th>
                 <th>DateRented</th>
                 <th>DateReturned</th>
 
@@ -23,21 +23,21 @@
         <tbody>
             @foreach (var Rental in Model.rentals)
             {
-                <tr>
-                    <td>@Rental.Id</td>
-                    <td>@Rental.RentalItems</td>
-                    <td>@Rental.StaffId</td>
-                    <td>@Rental.Staff</td>
-                    <td>@Rental.DateRented</td>
-                    <td>@Rental.DateReturned</td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@Rental.Id">Edit</a> |
-                        <button type="submit" asp-page-handler="delete"
-                                asp-route-id="@Rental.Id">
-                            delete
-                        </button>
-                    </td>
-                </tr>
+            <tr>
+                <td>@Rental.Id</td>
+                <td>@Rental.RentalItems.Count</td>
+                <td>@Rental.StaffId</td>
+                <td>@Rental.Staff.FirstName @Rental.Staff.LastName</td>
+                <td>@Rental.DateRented</td>
+                <td>@Rental.DateReturned</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@Rental.Id">Edit</a> |
+                    <button type="submit" asp-page-handler="delete"
+                            asp-route-id="@Rental.Id">
+                        delete
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
