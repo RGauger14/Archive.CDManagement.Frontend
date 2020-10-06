@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Archive.CDManagement.Frontend.Pages.Rentals
 {
+    [BindProperties]
     public class EditModel : PageModel
     {
         private readonly IRentalRepository _rentalRepository;
         private readonly ICDRepository _cDRepository;
 
-        [BindProperty]
         public RentalModel Rental { get; set; }
         public List<CDModel> CDs { get; set; }
 
@@ -20,19 +20,35 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
         {
             _rentalRepository = rentalRepository;
             _cDRepository = cDRepository;
-
         }
+
         public void OnGet(int id)
         {
             Rental = _rentalRepository.Read(id);
             CDs = _cDRepository.GetAll().Where(cd => !cd.OnLoan).ToList();
         }
 
-        public void OnPostRemove(int rentalItemId)
+        public void OnPostRemoveRentalItem(int rentalItemId)
         {
-            var rentalID = Rental.RentalItems.Single(rentalItem => rentalItem.Id == rentalItemId);
-            Rental.RentalItems.Remove(rentalID);
-            _rentalRepository.Edit(Rental);
+            _rentalRepository.RemoveRentalItem(Rental.Id, rentalItemId);
+            OnGet(Rental.Id);
+        }
+
+        public void OnPostAddRentalItem(int cdId)
+        {
+            var rentalItem = new RentalItemModel
+            {
+                CDId = cdId,
+                RentalId = Rental.Id
+            };
+            _rentalRepository.AddRentalItem(rentalItem);
+            OnGet(Rental.Id);
+        }
+
+        public void OnPostReturnRental()
+        {
+            _rentalRepository.ReturnRental(Rental.Id);
+            OnGet(Rental.Id);
         }
     }
 }

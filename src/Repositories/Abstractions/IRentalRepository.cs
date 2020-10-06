@@ -14,5 +14,11 @@ namespace Archive.CDManagement.Frontend.Repositories.Abstractions
         void Edit(RentalModel rental);
 
         List<RentalModel> GetAll();
+
+        void RemoveRentalItem(int rentalId, int rentalItemId);
+
+        void AddRentalItem(RentalItemModel rentalItem);
+
+        void ReturnRental(int id);
     }
 }

@@ -3,53 +3,67 @@
 @{
     ViewData["Title"] = "Rentals Edit Page";
 }
-<div>
-</div>
 <form method="post">
-    <div >
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Add CD
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            @foreach (var cd in Model.CDs)
-            {
-                <a class="dropdown-item" href="#">@cd.Title</a>
-            }
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add CD
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var cd in Model.CDs)
+                    {
+                        <button class="dropdown-item" asp-page-handler="AddRentalItem"
+                                asp-route-id="@Model.Rental.Id" asp-route-cdId="@cd.Id">
+                            @cd.Title
+                        </button>
+                    }
+                </div>
+                <button class="btn btn-success" type="submit" asp-page-handler="ReturnRental" asp-route-id="@Model.Rental.Id">
+                    Return Rental
+                </button>
+            </div>
+            <div class="col">
+                <p>Rented On: @Model.Rental.DateRented</p>
+                <p>Returned On: @Model.Rental.DateReturned</p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CD Title</th>
+                        <th>Author</th>
+                        <th>Barcode</th>
+                        <th>On Loan</th>
+                        <th>Section</th>
+                        <th>X</th>
+                        <th>Y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rentalItem in Model.Rental.RentalItems)
+                    {
+                        <tr>
+                            <td>@rentalItem.Id</td>
+                            <td>@rentalItem.CD.Title</td>
+                            <td>@rentalItem.CD.Author</td>
+                            <td>@rentalItem.CD.Barcode</td>
+                            <td>@rentalItem.CD.OnLoan</td>
+                            <td>@rentalItem.CD.Section</td>
+                            <td>@rentalItem.CD.X</td>
+                            <td>@rentalItem.CD.Y</td>
+                            <td>
+                                <button type="submit" asp-page-handler="RemoveRentalItem"
+                                        asp-route-id="@Model.Rental.Id" asp-route-rentalItemId="@rentalItem.Id">
+                                    Remove
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>CD Title</th>
-                <th>Author</th>
-                <th>Barcode</th>
-                <th>On Loan</th>
-                <th>Section</th>
-                <th>X</th>
-                <th>Y</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var rentalItem in Model.Rental.RentalItems)
-            {
-                <tr>
-                    <td>@rentalItem.Id</td>
-                    <td>@rentalItem.CD.Title</td>
-                    <td>@rentalItem.CD.Author</td>
-                    <td>@rentalItem.CD.Barcode</td>
-                    <td>@rentalItem.CD.OnLoan</td>
-                    <td>@rentalItem.CD.Section</td>
-                    <td>@rentalItem.CD.X</td>
-                    <td>@rentalItem.CD.Y</td>
-                    <td>
-                        <button type="submit" asp-page-handler="Remove"
-                                asp-route-id="@rentalItem.Id">
-                            delete
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </form>
