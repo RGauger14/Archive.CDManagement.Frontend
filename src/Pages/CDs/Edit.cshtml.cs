@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Archive.CDManagement.Frontend.Pages.CDPages
@@ -16,5 +18,12 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
         {
             CD = _cdRepository.Read(id);
         }
+
+        public void UploadFile(IFormFile file)
+        {
+            
+        }
+
+        // TODO - UploadFile
     }
 }

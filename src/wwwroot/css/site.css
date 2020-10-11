@@ -72,3 +72,20 @@ body {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
 }
+
+#dropArea {
+    background: #b5b5b5;
+    border: black dashed 1px;
+    height: 100px;
+    width: 480px;
+    text-align: center;
+    color: #fff;
+    padding-top: 12px;
+}
+
+.active-drop {
+    background: #77bafa !important;
+    border: solid 2px blue !important;
+    opacity: .5;
+    color: black !important;
+}
