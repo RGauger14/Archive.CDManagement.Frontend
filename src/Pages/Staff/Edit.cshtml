@@ -2,7 +2,41 @@
 @model Archive.CDManagement.Frontend.Pages.Staff.EditStaffModel
 @{
 }
-<div class="text-center">
+@{
+    ViewData["Title"] = "Staff Edit Page";
+}
+<div>
     <h1 class="display-4">Edit CD</h1>
-    <p>@Model.Staff.ToString()</p>
+        <div class="form-group">
+            <label for="inputTitle">First Name Edit</label>
+            <input class="form-control" id="inputTitle" asp-for="Staff.FirstName" aria-describedby="titleHelp">
+            <small id="FirstNameeHelp" asp-validation-for="Staff.FirstName"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputAuthor">Last Name Edit</label>
+            <input class="form-control" id="inputAuthor" asp-for="Staff.LastName" aria-describedby="authorHelp">
+            <small id="LastNameHelp" asp-validation-for="Staff.LastName"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address Edit</label>
+            <input class="form-control" id="inputAddress" asp-for="Staff.Address" aria-describedby="addressHelp">
+            <small id="AddressHelp" asp-validation-for="Staff.Address"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputX">Email Edit</label>
+            <input class="form-control" id="xSection" asp-for="Staff.Email" aria-describedby="EmailHelp">
+            <small id="EmailHelp" asp-validation-for="Staff.Email"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputY">Moblie Number Edit</label>
+            <input class="form-control" id="ySection" asp-for="Staff.MobileNumber" aria-describedby="MobileNumberHelp">
+            <small id="MobileNumberHelp" asp-validation-for="Staff.MobileNumber"></small>
+        </div>
+        <label for="inputIsActive">Is Active?</label>
+        <div>
+            <input type="checkbox" id="Active" name="Active" value="Active">
+        </div>
+        <input type="submit" />
 </div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>

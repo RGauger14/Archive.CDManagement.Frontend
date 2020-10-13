@@ -12,7 +12,7 @@ namespace Archive.CDManagement.Frontend.Repositories.Abstractions
         StaffModel Read(int id);
 
         void Edit(StaffModel staff);
-
         List<StaffModel> GetAll();
+        void Create(object staff);
     }
 }

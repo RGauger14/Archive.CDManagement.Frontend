@@ -1,5 +1,41 @@
 ﻿@page
 @model Archive.CDManagement.Frontend.Pages.Rentals.CreateModel
+
 @{
     ViewData["Title"] = "Rentals Create Page";
 }
+<div>
+    <h1 class="display-4">Create Rental</h1>
+    <form method="post">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add Staff ID
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var Id in Model.StaffId)
+            {
+                <button class="dropdown-item" asp-page-handler="Add Staff"
+                        asp-route-id="@Model.StaffId" asp-route-StaffId="@Model.StaffId">
+                </button>
+            }
+        </div>
+        <div class="form-group">
+            <label for="inputSection">Staff First Name</label>
+            <input class="form-control" id="inputSection" asp-for="Rental.Staff" aria-describedby="sectionHelp">
+            <small id="sectionHelp" asp-validation-for="Staff.First Name"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputSection">Staff Last Name</label>
+            <input class="form-control" id="inputSection" asp-for="Rental.Staff" aria-describedby="sectionHelp">
+            <small id="sectionHelp" asp-validation-for="Staff.Last Name"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputX">Date Rented</label>
+            <input class="form-control" id="xSection" asp-for="Rental.DateRented" aria-describedby="xHelp">
+            <small id="xHelp" asp-validation-for="Date rented"></small>
+        </div>
+        <input type="submit" />
+    </form>
+    </div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

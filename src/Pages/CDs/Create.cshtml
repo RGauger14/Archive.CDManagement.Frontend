@@ -3,7 +3,49 @@
 @{
     ViewData["Title"] = "CD Create Page";
 }
-<div class="text-center">
+<div>
     <h1 class="display-4">Create CD</h1>
-    <p>TODO</p>
+    <form method="post">
+        <div id="dropArea">Drop your movie image here.</div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label for="inputTitle">Title</label>
+            <input class="form-control" id="inputTitle" asp-for="CD.Title" aria-describedby="titleHelp">
+            <small id="titleHelp" asp-validation-for="CD.Title"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputAuthor">Author</label>
+            <input class="form-control" id="inputAuthor" asp-for="CD.Author" aria-describedby="authorHelp">
+            <small id="authorHelp" asp-validation-for="CD.Author"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputSection">Section</label>
+            <input class="form-control" id="inputSection" asp-for="CD.Section" aria-describedby="sectionHelp">
+            <small id="sectionHelp" asp-validation-for="CD.Section"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputX">X pos</label>
+            <input class="form-control" id="xSection" asp-for="CD.X" aria-describedby="xHelp">
+            <small id="xHelp" asp-validation-for="CD.X"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputY">Y pos</label>
+            <input class="form-control" id="ySection" asp-for="CD.Y" aria-describedby="yHelp">
+            <small id="yHelp" asp-validation-for="CD.y"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputBarcode">Barcode</label>
+            <input class="form-control" id="inputBarcode" asp-for="CD.Barcode" aria-describedby="barcodeHelp">
+            <small id="barcodeHelp" asp-validation-for="CD.Barcode"></small>
+        </div>
+        <div class="form-group">
+            <label for="inputDescription">Description</label>
+            <input class="form-control" id="descriptionSection" asp-for="CD.Description" aria-describedby="DescriptionHelp">
+            <small id="descriptionHelp" asp-validation-for="CD.Description"></small>
+        </div>
+        <input type="submit" />
+    </form>
 </div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

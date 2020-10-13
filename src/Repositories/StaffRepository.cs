@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mime;
+using System.Text;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
@@ -19,6 +22,19 @@ namespace Archive.CDManagement.Frontend.Repositories
         }
 
         public void Create(StaffModel staff)
+        {
+            var serializeStaff = JsonConvert.SerializeObject(staff);
+            var requestContent = new StringContent(serializeStaff, Encoding.UTF8, MediaTypeNames.Application.Json);
+            var response = _httpClient.PutAsync($"api/staff", requestContent).GetAwaiter().GetResult();
+
+            if(response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception("Could not create Staff Member");
+            }
+            
+        }
+
+        public void Create(object staff)
         {
             throw new NotImplementedException();
         }

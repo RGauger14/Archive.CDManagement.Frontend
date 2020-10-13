@@ -1,5 +1,6 @@
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Archive.CDManagement.Frontend.Pages.Staff
@@ -8,12 +9,19 @@ namespace Archive.CDManagement.Frontend.Pages.Staff
     {
         private readonly IStaffRepository _staffRepository;
 
+        [BindProperty]
+        public StaffModel Staff { get; set; }
+
         public CreateStaffModel(IStaffRepository staffRepository)
         {
             _staffRepository = staffRepository;
         }
         public void OnGet()
         {
+        }
+        public void OnPost()
+        {
+            _staffRepository.Create(Staff);
         }
     }
 }

@@ -23,7 +23,14 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public void Create(RentalModel rental)
         {
-            throw new NotImplementedException();
+            var serializeRental = JsonConvert.SerializeObject(rental);
+            var requestContent = new StringContent(serializeRental, Encoding.UTF8, MediaTypeNames.Application.Json);
+            var response = _httpClient.PutAsync($"api/rental", requestContent).GetAwaiter().GetResult();
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception("Could not Create Rental");
+            }
         }
 
         public void Delete(int id)

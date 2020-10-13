@@ -26,5 +26,11 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
         {
             return JsonConvert.SerializeObject(CDs);
         }
+
+        public void OnPostDelete(int cdId)
+        {
+            _cdRepository.Delete(cdId);
+            OnGet();
+        }
     }
 }
