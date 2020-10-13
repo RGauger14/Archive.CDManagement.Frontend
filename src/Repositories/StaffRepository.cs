@@ -34,11 +34,6 @@ namespace Archive.CDManagement.Frontend.Repositories
             
         }
 
-        public void Create(object staff)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(int id)
         {
             throw new NotImplementedException();
@@ -46,7 +41,14 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public void Edit(StaffModel staff)
         {
-            throw new NotImplementedException();
+            var serialzeStaff = JsonConvert.SerializeObject(staff);
+            var requestContent = new StringContent(serialzeStaff, Encoding.UTF8, MediaTypeNames.Application.Json);
+            var response = _httpClient.PostAsync($"api/staff", requestContent).GetAwaiter().GetResult();
+
+            if(response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception("Could not edit Staff Member");
+            }
         }
 
         public List<StaffModel> GetAll()

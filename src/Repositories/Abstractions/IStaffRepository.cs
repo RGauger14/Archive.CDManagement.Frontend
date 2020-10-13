@@ -13,6 +13,5 @@ namespace Archive.CDManagement.Frontend.Repositories.Abstractions
 
         void Edit(StaffModel staff);
         List<StaffModel> GetAll();
-        void Create(object staff);
     }
 }

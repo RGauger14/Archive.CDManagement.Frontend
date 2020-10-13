@@ -7,6 +7,12 @@
 }
 <div>
     <h1 class="display-4">Edit Staff</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="inputId" asp-for="Staff.Id"></label>
+            <input id="inputId" class="form-control" asp-for="Staff.Id" disabled>
+        </div>
+
         <div class="form-group">
             <label for="inputTitle">First Name Edit</label>
             <input class="form-control" id="inputTitle" asp-for="Staff.FirstName" aria-describedby="titleHelp">
@@ -32,11 +38,14 @@
             <input class="form-control" id="ySection" asp-for="Staff.MobileNumber" aria-describedby="MobileNumberHelp">
             <small id="MobileNumberHelp" asp-validation-for="Staff.MobileNumber"></small>
         </div>
-        <label for="inputIsActive">Is Active?</label>
-        <div>
-            <input type="checkbox" id="Active" name="Active" value="Active">
+        <div class="form-group">
+            <label for="inputIsActive">Is Active?</label>
+            <input type="checkbox" id="Active" asp-for="Staff.Active">
         </div>
-        <input type="submit" />
+        <div>
+            <input type="submit" />
+        </div>
+     </form>
 </div>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
