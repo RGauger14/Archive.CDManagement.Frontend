@@ -13,9 +13,8 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
         private readonly IRentalRepository _rentalRepository;
         private readonly IStaffRepository _staffRepository;
 
-        
         public RentalModel Rental { get; set; }
-        public List<StaffModel> StaffId { get; set; }
+        public List<StaffModel> StaffIds { get; set; }
 
         public CreateModel(IRentalRepository rentalRepository, IStaffRepository staffRepository)
         {
@@ -26,14 +25,12 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
         public void OnGet(int id)
         {
             Rental = _rentalRepository.Read(id);
-            StaffId = _staffRepository.GetAll();
+            StaffIds = _staffRepository.GetAll();
         }
-
 
         public void OnPost()
         {
             _rentalRepository.Create(Rental);
         }
-
     }
 }

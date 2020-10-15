@@ -18,7 +18,6 @@
                 <th>Email</th>
                 <th>Mobile Number</th>
                 <th>Active</th>
-
             </tr>
         </thead>
         <tbody>
@@ -35,7 +34,7 @@
                     <td>
                         <a asp-page="./Edit" asp-route-id="@Staff.Id">Edit</a> |
                         <button type="submit" asp-page-handler="delete"
-                                asp-route-id="@Staff.Id">
+                                asp-route-staffId="@Staff.Id">
                             delete
                         </button>
                     </td>

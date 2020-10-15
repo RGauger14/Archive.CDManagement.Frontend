@@ -17,13 +17,15 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
         {
             _cDRepository = cDRepository;
         }
+
         public void OnGet()
         {
         }
 
-        public void OnPost()
+        public IActionResult OnPost(int id)
         {
             _cDRepository.Create(CD);
+            return RedirectToPage("/Cds/Index");
         }
 
         // TODO - UploadFile

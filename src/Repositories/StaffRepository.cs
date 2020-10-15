@@ -27,16 +27,20 @@ namespace Archive.CDManagement.Frontend.Repositories
             var requestContent = new StringContent(serializeStaff, Encoding.UTF8, MediaTypeNames.Application.Json);
             var response = _httpClient.PutAsync($"api/staff", requestContent).GetAwaiter().GetResult();
 
-            if(response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new Exception("Could not create Staff Member");
             }
-            
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var response = _httpClient.DeleteAsync($"api/staff/{id}").GetAwaiter().GetResult();
+            var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception($"Could not remove Staff with id {id}");
+            }
         }
 
         public void Edit(StaffModel staff)
@@ -45,7 +49,7 @@ namespace Archive.CDManagement.Frontend.Repositories
             var requestContent = new StringContent(serialzeStaff, Encoding.UTF8, MediaTypeNames.Application.Json);
             var response = _httpClient.PostAsync($"api/staff", requestContent).GetAwaiter().GetResult();
 
-            if(response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new Exception("Could not edit Staff Member");
             }

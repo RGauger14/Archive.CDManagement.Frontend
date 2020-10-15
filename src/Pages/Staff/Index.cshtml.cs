@@ -8,20 +8,28 @@ namespace Archive.CDManagement.Frontend.Pages.Staff
 {
     public class IndexStaffModel : PageModel
     {
-        public List<StaffModel> Staff { get; private set;}
+        public List<StaffModel> Staff { get; private set; }
         private readonly IStaffRepository _staffRepository;
 
         public IndexStaffModel(IStaffRepository staffRepository)
         {
             _staffRepository = staffRepository;
         }
+
         public void OnGet()
         {
             Staff = _staffRepository.GetAll();
         }
+
         public string GetStaffAsJson()
         {
             return JsonConvert.SerializeObject(Staff);
+        }
+
+        public void OnPostDelete(int staffId)
+        {
+            _staffRepository.Delete(staffId);
+            OnGet();
         }
     }
 }
