@@ -19,9 +19,10 @@ namespace Archive.CDManagement.Frontend.Pages.Staff
         public void OnGet()
         {
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
             _staffRepository.Create(Staff);
+            return RedirectToPage("/Staff/Index");
         }
     }
 }

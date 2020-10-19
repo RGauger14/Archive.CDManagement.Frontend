@@ -5,7 +5,7 @@ namespace Archive.CDManagement.Frontend.Repositories.Abstractions
 {
     public interface IRentalRepository
     {
-        void Create(RentalModel rental);
+        RentalModel Create(RentalModel rental);
 
         void Delete(int id);
 

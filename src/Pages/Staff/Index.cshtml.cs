@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
@@ -26,10 +27,10 @@ namespace Archive.CDManagement.Frontend.Pages.Staff
             return JsonConvert.SerializeObject(Staff);
         }
 
-        public void OnPostDelete(int staffId)
+        public IActionResult OnPostDelete(int staffId)
         {
             _staffRepository.Delete(staffId);
-            OnGet();
+            return RedirectToPage("/Staff/Index");
         }
     }
 }

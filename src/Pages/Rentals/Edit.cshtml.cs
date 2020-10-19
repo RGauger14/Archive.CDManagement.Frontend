@@ -45,10 +45,10 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
             OnGet(Rental.Id);
         }
 
-        public void OnPostReturnRental()
+        public IActionResult OnPostReturnRental()
         {
             _rentalRepository.ReturnRental(Rental.Id);
-            OnGet(Rental.Id);
+            return RedirectToPage("/Rentals/Index");
         }
     }
 }

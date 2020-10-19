@@ -47,7 +47,14 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public void Edit(CDModel cd)
         {
-            throw new NotImplementedException();
+            var serialzeCd = JsonConvert.SerializeObject(cd);
+            var reqiestContent = new StringContent(serialzeCd, Encoding.UTF8, MediaTypeNames.Application.Json);
+            var response = _httpClient.PostAsync($"api/cd", reqiestContent).GetAwaiter().GetResult();
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception("Could not edit Staff Member");
+            }
         }
 
         public CDModel Read(int id)

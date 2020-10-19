@@ -28,9 +28,10 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
             StaffIds = _staffRepository.GetAll();
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            _rentalRepository.Create(Rental);
+            var rentalModel = _rentalRepository.Create(Rental);
+            return RedirectToPage($"/Rentals/Edit", new { Id = rentalModel.Id });
         }
     }
 }

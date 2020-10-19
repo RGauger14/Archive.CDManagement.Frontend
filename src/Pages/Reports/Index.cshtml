@@ -5,5 +5,76 @@
 }
 <div class="text-center">
     <h1 class="display-4">Reports</h1>
-    <p>@Model.GetReportsAsJson()</p>
+    <form class="form-inline" method="post">
+        <div class="form-group">
+            <button asp-page-handler="DownloadRentals">Export Rentals</button>
+        </div>
+        <div class="form-group">
+            <label for="staffMemberSelect">Filter By Staff Member: </label>
+            <select class="form-control" id="staffMemberSelect" asp-for="@Model.StaffIdFilter">
+                <option value="0">None</option>
+                @foreach (var Staff in Model.Staff)
+                {
+                    <option value="@Staff.Id">@Staff.FirstName @Staff.LastName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cdSelect">Filter By CD: </label>
+            <select class="form-control" id="cdSelect" asp-for="@Model.CdIdFilter">
+                <option value="0">None</option>
+                @foreach (var CD in Model.CDs)
+                {
+                    <option value="@CD.Id">@CD.Title</option>
+                }
+            </select>
+        </div>
+    </form>
+    <hr />
+    <form method="post">
+        <button style='float:left;' asp-page-handler="DownloadCdCount">Export CD Rental Count</button>
+    </form>
+    <canvas id="cdRentedChart" max-width="400" max-height="400"></canvas>
 </div>
+
+<script src="~/lib/chartjs/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById('cdRentedChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                @for (var i = 0; i < Model.CdRentedCount.Count; i++)
+                {
+                    <text>
+                        '@Model.CdRentedCount[i].CD.Title',
+                    </text>
+                }
+            ],
+            datasets: [{
+                label: '# of times rented',
+                data: [
+                    @for (var i = 0; i < Model.CdRentedCount.Count; i++)
+                    {
+                        <text>
+                         @Model.CdRentedCount[i].RentedCount,
+                        </text>
+                    }
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 5
+                    }
+                }]
+            }
+        }
+    });
+</script>

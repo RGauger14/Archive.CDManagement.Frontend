@@ -21,7 +21,7 @@ namespace Archive.CDManagement.Frontend.Repositories
             _httpClient.BaseAddress = new Uri(settings.CDApiUrl);
         }
 
-        public void Create(RentalModel rental)
+        public RentalModel Create(RentalModel rental)
         {
             var serializeRental = JsonConvert.SerializeObject(rental);
             var requestContent = new StringContent(serializeRental, Encoding.UTF8, MediaTypeNames.Application.Json);
@@ -31,6 +31,11 @@ namespace Archive.CDManagement.Frontend.Repositories
             {
                 throw new Exception("Could not Create Rental");
             }
+
+            var responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            var rentalResponse = JsonConvert.DeserializeObject<RentalModel>(responseContent);
+
+            return rentalResponse;
         }
 
         public void Delete(int id)

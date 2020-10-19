@@ -12,24 +12,14 @@
             <select class="form-control" id="staffMemberSelect" asp-for="Rental.StaffId">
                 @foreach (var Staff in Model.StaffIds)
                 {
-                    <option value="@Staff.Id">@Staff.FirstName</option>
+                <option value="@Staff.Id">@Staff.FirstName @Staff.LastName</option>
                 }
             </select>
         </div>
         <div class="form-group">
-            <label for="inputSection">Staff First Name</label>
-            <input class="form-control" id="inputSection" asp-for="Rental.Staff" aria-describedby="sectionHelp">
-            <small id="sectionHelp" asp-validation-for="Staff.First Name"></small>
-        </div>
-        <div class="form-group">
-            <label for="inputSection">Staff Last Name</label>
-            <input class="form-control" id="inputSection" asp-for="Rental.Staff" aria-describedby="sectionHelp">
-            <small id="sectionHelp" asp-validation-for="Staff.Last Name"></small>
-        </div>
-        <div class="form-group">
             <label for="inputX">Date Rented</label>
             <input class="form-control" id="xSection" asp-for="Rental.DateRented" aria-describedby="xHelp">
-            <small id="xHelp" asp-validation-for="Date rented"></small>
+            <small id="xHelp" asp-validation-for="Rental.DateRented"></small>
         </div>
         <input type="submit" />
     </form>
