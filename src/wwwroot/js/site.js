@@ -3,12 +3,14 @@
 
 // Write your Javascript code.
 $(function () {
+    xsrfToken = document.getElementsByName("__RequestVerificationToken")[0].value;
     $('#dropArea').filedrop({
         url: window.location.href + '?handler=UploadFile',
+        headers: { "XSRF-TOKEN": xsrfToken },
         allowedfilestypes: ['image/jpeg', 'image/png', 'image/gif'],
         allowedfileextensions: [
             '.jpg', '.jpeg', '.png', '.gif', '.JPG', '.JPEG', '.PNG'],
-        paramname: 'files',
+        paramname: 'file',
         maxfiles: 1,
         maxfilessize: 5, // in MB
         dragOver: function () {

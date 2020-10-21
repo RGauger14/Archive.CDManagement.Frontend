@@ -3,6 +3,7 @@ using Archive.CDManagement.Frontend.Repositories;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +25,7 @@ namespace Archive.CDManagement.Frontend
             var settings = new MySettings();
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddHttpClient<ICDRepository, CDRepository>();
             services.AddHttpClient<IRentalRepository, RentalRepository>();
             services.AddHttpClient<IStaffRepository, StaffRepository>();

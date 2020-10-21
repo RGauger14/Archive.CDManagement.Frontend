@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using Archive.CDManagement.Frontend.Models;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
 using Microsoft.AspNetCore.Http;
@@ -23,19 +24,24 @@ namespace Archive.CDManagement.Frontend.Pages.CDPages
             CD = _cdRepository.Read(id);
         }
 
-        public void UploadFile(IFormFile file)
-        {
-            
-        }
-
         public IActionResult OnPost(int id)
         {
             CD.Id = id;
             _cdRepository.Edit(CD);
             return RedirectToPage("/CDs/Index");
-
         }
 
-        // TODO - UploadFile
+        public IActionResult OnPostUploadFile(IFormFile file)
+        {
+            if (file.Length > 0)
+            {
+                var filePath = Path.GetTempFileName();
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    file.CopyTo(stream);
+                }
+            }
+            return RedirectToPage("/CDs/Index");
+        }
     }
 }
