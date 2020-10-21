@@ -8,7 +8,14 @@
     <h1 class="display-4">Edit CD</h1>
     <form method="post">
         @Html.AntiForgeryToken()
-        <div id="dropArea">Drop your movie image here.</div>
+        @if (string.IsNullOrEmpty(Model.CD.ThumbnailFileName))
+        {
+            <div id="dropArea">Drop your movie image here.</div>
+        }
+        else
+        {
+            <img src="@Url.Content("~/images/"+Model.CD.ThumbnailFileName)" alt="Image" />
+        }
         <div asp-validation-summary="ModelOnly"></div>
         <div class="form-group">
             <label for="inputTitle">Title</label>

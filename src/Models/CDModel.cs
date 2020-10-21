@@ -40,6 +40,11 @@ namespace Archive.CDManagement.Frontend.Models
 
         [Required]
         public bool OnLoan { get; set; }
+
+        public string ThumbnailFilePath { get; set; }
+
+        public string ThumbnailFileName { get; set; }
+
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
