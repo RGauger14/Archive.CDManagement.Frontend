@@ -25,7 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/CDs/Index">CDs</a>
                         </li>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rentals/Index">Rentals</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Rentals/Index">Rentals</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Staff/Index">Staff</a>
@@ -33,7 +33,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Reports/Index">Reports</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Help">Help</a>
+                        </li>
                     </ul>
+                </div>
+                <div>
+                    @if (!string.IsNullOrWhiteSpace(@TempData.Peek("UserName") as string))
+                    {
+                        <p>
+                            Welcome, @TempData.Peek("UserName")
+                        </p>
+                    }
                 </div>
             </div>
         </nav>

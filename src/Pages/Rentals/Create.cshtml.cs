@@ -4,6 +4,7 @@ using Archive.CDManagement.Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Archive.CDManagement.Frontend.Pages.Staff;
 using System.Collections.Generic;
+using System;
 
 namespace Archive.CDManagement.Frontend.Pages.Rentals
 {
@@ -21,11 +22,12 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
             _rentalRepository = rentalRepository;
             _staffRepository = staffRepository;
         }
-
+       
         public void OnGet(int id)
         {
             Rental = _rentalRepository.Read(id);
             StaffIds = _staffRepository.GetAll();
+            Rental.DateRented = DateTime.Now; // Want the date time for this to always be current date.
         }
 
         public IActionResult OnPost()

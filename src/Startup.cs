@@ -1,3 +1,4 @@
+using System;
 using Archive.CDManagement.Frontend.Configuration;
 using Archive.CDManagement.Frontend.Repositories;
 using Archive.CDManagement.Frontend.Repositories.Abstractions;
@@ -25,12 +26,21 @@ namespace Archive.CDManagement.Frontend
             var settings = new MySettings();
             Configuration.Bind("MySettings", settings);
             services.AddRazorPages();
+
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddHttpClient<ICDRepository, CDRepository>();
             services.AddHttpClient<IRentalRepository, RentalRepository>();
             services.AddHttpClient<IStaffRepository, StaffRepository>();
             services.AddHttpClient<IReportRepository, ReportRepository>();
             services.AddSingleton<MySettings>(settings);
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(50);
+                options.Cookie.Name = ".CdManagement.Session";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +62,8 @@ namespace Archive.CDManagement.Frontend
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
