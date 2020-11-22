@@ -40,7 +40,11 @@ namespace Archive.CDManagement.Frontend.Repositories
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var response = _httpClient.DeleteAsync($"api/rental/{id}").GetAwaiter().GetResult();
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception($"Could not remove Rental with id {id}");
+            }
         }
 
         public void Edit(RentalModel rental)

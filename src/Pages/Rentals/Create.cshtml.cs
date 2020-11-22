@@ -23,11 +23,9 @@ namespace Archive.CDManagement.Frontend.Pages.Rentals
             _staffRepository = staffRepository;
         }
        
-        public void OnGet(int id)
+        public void OnGet()
         {
-            Rental = _rentalRepository.Read(id);
             StaffIds = _staffRepository.GetAll();
-            Rental.DateRented = DateTime.Now; // Want the date time for this to always be current date.
         }
 
         public IActionResult OnPost()
